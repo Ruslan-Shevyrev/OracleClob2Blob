@@ -1,8 +1,6 @@
 CREATE OR REPLACE PACKAGE BODY PKG_CONVERT AS
 
-function blob2clob (
-        rawinput    in    blob 
-) 
+function blob2clob (rawinput in blob)
 return clob
 as
     inputlength  number;
