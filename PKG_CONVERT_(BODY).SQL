@@ -1,10 +1,10 @@
 CREATE OR REPLACE PACKAGE BODY PKG_CONVERT AS
 
-FUNCTION blob2clob (rawinput IN blob) RETURN clob
+FUNCTION blob2clob (rawinput IN blob) RETURN CLOB
 AS 
 	inputlength NUMBER;
 	chunklength NUMBER := 4000;
-	clobinput	clob;
+	clobinput	CLOB;
 	chunkcontent varchar2(4000);
 BEGIN
 	inputlength := dbms_lob.getlength(rawinput);
@@ -13,12 +13,12 @@ BEGIN
 	ELSE
 		RETURN NULL;
 	END IF;
-	FOR i IN 1..CEIL(inputlength/chunklength) loop
-		chunkcontent := utl_raw.cast_to_varchar2(dbms_lob.substr(rawinput,chunklength,(i-1)*chunklength + 1));
+	FOR i IN 1..CEIL(inputlength/chunklength) LOOP
+		chunkcontent := utl_raw.cast_to_varchar2(dbms_lob.SUBSTR(rawinput,chunklength,(i-1)*chunklength + 1));
 		DBMS_LOB.WRITEAPPEND(clobinput, LENGTH(chunkcontent), chunkcontent);
-	END loop;
+	END LOOP;
 	RETURN clobinput;
-end blob2clob;
+END blob2clob;
 
 function clob2blob (p_clob IN CLOB) 
 RETURN BLOB IS
