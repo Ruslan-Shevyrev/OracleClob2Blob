@@ -12,7 +12,7 @@ BEGIN
 		DBMS_LOB.CREATETEMPORARY(clobinput, TRUE);
 	ELSE
 		RETURN NULL;
-	END IF;
+	END IF; 
 	FOR i IN 1..CEIL(inputlength/chunklength) LOOP
 		chunkcontent := utl_raw.cast_to_varchar2(dbms_lob.SUBSTR(rawinput,chunklength,(i-1)*chunklength + 1));
 		DBMS_LOB.WRITEAPPEND(clobinput, LENGTH(chunkcontent), chunkcontent);
