@@ -12,7 +12,7 @@ BEGIN
 		DBMS_LOB.CREATETEMPORARY(clobinput, TRUE);
 	ELSE
 		RETURN NULL;
-	END IF;
+	END IF; 
 	FOR i IN 1..CEIL(inputlength/chunklength) LOOP
 		chunkcontent := utl_raw.cast_to_varchar2(dbms_lob.SUBSTR(rawinput,chunklength,(i-1)*chunklength + 1));
 		DBMS_LOB.WRITEAPPEND(clobinput, LENGTH(chunkcontent), chunkcontent);
@@ -51,26 +51,26 @@ BEGIN
 	RETURN v_blob;
 END clob2blob;
 
-FUNCTION clob_to_blob(value            	IN CLOB,
-						charset_id      IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN BLOB
-AS 
-	result       BLOB;
-	dest_offset  INTEGER := 1;
-	src_offset   INTEGER := 1;
-	lang_context INTEGER := DBMS_LOB.DEFAULT_LANG_CTX;
-	warning      INTEGER;
-BEGIN 
-	DBMS_LOB.CreateTemporary(lob_loc 	=> result,
-							cache   	=> TRUE);
+FUNCTION clob_to_blob(value			IN CLOB,
+						charset_id	IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN BLOB
+AS
+	RESULT			BLOB;
+	dest_offset		INTEGER := 1;
+	src_offset		INTEGER := 1;
+	lang_context	INTEGER := DBMS_LOB.DEFAULT_LANG_CTX;
+	warning			INTEGER;
+BEGIN
+	DBMS_LOB.CreateTemporary(lob_loc	=> result,
+							cache		=> TRUE);
 						
-	DBMS_LOB.CONVERTTOBLOB(dest_lob     => result,
-							src_clob     => value,
-							amount       => LENGTH( value ),
-							dest_offset  => dest_offset,
-							src_offset   => src_offset,
-							blob_csid    => charset_id,
-							lang_context => lang_context,
-							warning      => warning);
+	DBMS_LOB.CONVERTTOBLOB(dest_lob			=> result,
+							src_clob		=> value,
+							amount			=> LENGTH( value ),
+							dest_offset		=> dest_offset,
+							src_offset		=> src_offset,
+							blob_csid		=> charset_id,
+							lang_context	=> lang_context,
+							warning			=> warning);
 	RETURN RESULT;
 END clob_to_blob;
 
