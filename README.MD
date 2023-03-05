@@ -2,6 +2,8 @@
 
 Oracle DataBase convert package.
 
+:one: Convert **Blob** to **Clob**
+
 <table>
 	<tr>
 		<td valign="center" width="49%"><img src="https://github.com/Ruslan-Shevyrev/Ruslan-Shevyrev/blob/main/logoRS/logo_mini.gif" title="logo"></td>
