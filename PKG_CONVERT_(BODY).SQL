@@ -1,6 +1,6 @@
 CREATE OR REPLACE PACKAGE BODY PKG_CONVERT AS
 
-FUNCTION blob2clob (p_blob IN blob) RETURN CLOB 
+FUNCTION blob2clob (p_blob IN blob) RETURN CLOB
 AS 
 	inputlength NUMBER;
 	chunklength NUMBER := 4000;
