@@ -1,20 +1,20 @@
 CREATE OR REPLACE PACKAGE BODY PKG_CONVERT AS
 
-FUNCTION blob2clob (rawinput IN blob) RETURN CLOB
+FUNCTION blob2clob (p_blob IN blob) RETURN CLOB
 AS 
 	inputlength NUMBER;
 	chunklength NUMBER := 4000;
 	clobinput	CLOB;
 	chunkcontent varchar2(4000);
 BEGIN
-	inputlength := dbms_lob.getlength(rawinput);
+	inputlength := dbms_lob.getlength(p_blob);
 	IF inputlength > 0 THEN
 		DBMS_LOB.CREATETEMPORARY(clobinput, TRUE);
 	ELSE
 		RETURN NULL;
 	END IF;
 	FOR i IN 1..CEIL(inputlength/chunklength) LOOP
-		chunkcontent := utl_raw.cast_to_varchar2(dbms_lob.SUBSTR(rawinput,chunklength,(i-1)*chunklength + 1));
+		chunkcontent := utl_raw.cast_to_varchar2(dbms_lob.SUBSTR(p_blob,chunklength,(i-1)*chunklength + 1));
 		DBMS_LOB.WRITEAPPEND(clobinput, LENGTH(chunkcontent), chunkcontent);
 	END LOOP;
 	RETURN clobinput;
@@ -51,7 +51,7 @@ BEGIN
 	RETURN v_blob;
 END clob2blob;
 
-FUNCTION clob_to_blob(value			IN CLOB,
+FUNCTION clob_to_blob(p_clob			IN CLOB,
 						charset_id	IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN BLOB
 AS
 	RESULT			BLOB;
@@ -64,8 +64,8 @@ BEGIN
 							cache		=> TRUE);
 						
 	DBMS_LOB.CONVERTTOBLOB(dest_lob			=> result,
-							src_clob		=> value,
-							amount			=> LENGTH( value ),
+							src_clob		=> p_clob,
+							amount			=> LENGTH(p_clob),
 							dest_offset		=> dest_offset,
 							src_offset		=> src_offset,
 							blob_csid		=> charset_id,
