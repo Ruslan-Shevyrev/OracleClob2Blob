@@ -8,6 +8,12 @@ Oracle DataBase convert package.
 FUNCTION blob2clob (p_blob IN blob) RETURN CLOB;
 ```
 
+:two: Convert **Clob** to **Blob**
+
+```
+FUNCTION clob2blob (p_clob IN clob) RETURN BLOB;;
+```
+
 <table>
 	<tr>
 		<td valign="center" width="49%"><img src="https://github.com/Ruslan-Shevyrev/Ruslan-Shevyrev/blob/main/logoRS/logo_mini.gif" title="logo"></td>
