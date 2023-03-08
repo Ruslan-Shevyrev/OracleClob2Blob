@@ -14,7 +14,7 @@ FUNCTION blob2clob (p_blob IN CLOB) RETURN CLOB;
 FUNCTION clob2blob (p_clob IN CLOB) RETURN BLOB;
 ```
 
-:three: Convert **Clob** to **Blob** with charset;
+:three: Convert **Clob** to **Blob** with charset using Package **DBMS_LOB**
 
 ```
 FUNCTION clob2blob_cs(p_clob	IN CLOB,
