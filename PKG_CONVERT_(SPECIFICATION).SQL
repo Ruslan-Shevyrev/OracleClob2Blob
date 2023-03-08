@@ -1,8 +1,8 @@
 CREATE OR REPLACE PACKAGE PKG_CONVERT AS 
 
-FUNCTION blob2clob(p_blob IN blob) RETURN clob;
+FUNCTION blob2clob(p_blob IN BLOB) RETURN CLOB;
 
-FUNCTION clob2blob (p_clob IN clob) RETURN blob;
+FUNCTION clob2blob (p_clob IN CLOB) RETURN BLOB;
 
 FUNCTION clob_to_blob(p_clob				IN CLOB,
 						charset_id		IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN BLOB;
