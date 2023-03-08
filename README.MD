@@ -18,7 +18,7 @@ FUNCTION clob2blob (p_clob IN CLOB) RETURN BLOB;
 
 ```
 FUNCTION clob2blob_cs(p_clob	IN CLOB,
-		charset_id	IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN BLOB;
+		p_charset_id	IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN BLOB;
 ```
 
 <table>
