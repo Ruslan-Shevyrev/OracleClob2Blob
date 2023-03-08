@@ -2,19 +2,19 @@
 
 Oracle DataBase convert package.
 
-:one: Convert **Blob** to **Clob**
+:one: Converting **Blob** to **Clob**
 
 ```
 FUNCTION blob2clob (p_blob IN CLOB) RETURN CLOB;
 ```
 
-:two: Convert **Clob** to **Blob**
+:two: Converting **Clob** to **Blob**
 
 ```
 FUNCTION clob2blob (p_clob IN CLOB) RETURN BLOB;
 ```
 
-:three: Convert **Clob** to **Blob** with charset using Package **DBMS_LOB**
+:three: Converting **Clob** to **Blob** with charset using Package **DBMS_LOB**
 
 ```
 FUNCTION clob2blob_cs(p_clob	IN CLOB,
