@@ -14,14 +14,14 @@ FUNCTION blob2clob (p_blob IN CLOB) RETURN CLOB;
 FUNCTION clob2blob (p_clob IN CLOB) RETURN BLOB;
 ```
 
-:three: Converting **Blob** to **Clob** with charset using Package **DBMS_LOB**
+:three: Converting **Blob** to **Clob** with charset using **DBMS_LOB** package
 
 ```
 FUNCTION blob2clob_cs(p_blob		IN BLOB
 		p_charset_id	IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN CLOB
 ```
 
-:four: Converting **Clob** to **Blob** with charset using Package **DBMS_LOB**
+:four: Converting **Clob** to **Blob** with charset using **DBMS_LOB** package
 
 ```
 FUNCTION clob2blob_cs(p_clob	IN CLOB,
