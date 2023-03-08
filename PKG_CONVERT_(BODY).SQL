@@ -60,9 +60,9 @@ AS
 	n_lang_context	INTEGER := DBMS_LOB.DEFAULT_LANG_CTX;
 	n_warning		INTEGER;
 BEGIN
-	DBMS_LOB.CreateTemporary(lob_loc	=> b_blob,
+	DBMS_LOB.CREATETEMPORARY(lob_loc	=> b_blob,
 							cache		=> TRUE);
-						
+
 	DBMS_LOB.CONVERTTOBLOB(dest_lob			=> b_blob,
 							src_clob		=> p_clob,
 							amount			=> LENGTH(p_clob),
@@ -73,5 +73,30 @@ BEGIN
 							warning			=> n_warning);
 	RETURN b_blob;
 END clob2blob_cs;
+
+FUNCTION blob2clob_cs(p_blob		IN BLOB
+					p_charset_id	IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN CLOB
+IS
+	c_clob 			CLOB;
+	n_file_size 	INTEGER := DBMS_LOB.LOBMAXSIZE;
+	n_dest_offset 	INTEGER := 1;
+	n_src_offset	INTEGER := 1;
+	n_lang_context	INTEGER := DBMS_LOB.DEFAULT_LANG_CTX;
+	n_warning		INTEGER;
+BEGIN
+	DBMS_LOB.CREATETEMPORARY(lob_loc	=> c_clob, 
+							cache		=> TRUE);
+
+	DBMS_LOB.CONVERTTOCLOB(dest_lob			=>c_clob,
+							src_blob		=>p_blob,
+							amount			=>n_file_size,
+							dest_offset		=>n_dest_offset,
+							src_offset		=>n_src_offset,
+							blob_csid		=>p_charset_id,
+							lang_context	=>n_lang_context,
+							warning			=>n_warning);
+
+	RETURN c_clob;
+END blob2clob_cs;
 
 END PKG_CONVERT;
