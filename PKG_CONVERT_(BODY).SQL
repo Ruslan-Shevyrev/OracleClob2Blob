@@ -48,7 +48,7 @@ BEGIN
 	EXCEPTION WHEN no_data_found THEN
 		NULL;
 	END;
-	RETURN v_blob;
+	RETURN b_blob;
 END clob2blob;
 
 FUNCTION clob2blob_cs(p_clob			IN CLOB,
@@ -74,7 +74,7 @@ BEGIN
 	RETURN b_blob;
 END clob2blob_cs;
 
-FUNCTION blob2clob_cs(p_blob		IN BLOB
+FUNCTION blob2clob_cs(p_blob		IN BLOB,
 					p_charset_id	IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN CLOB
 IS
 	c_clob 			CLOB;
