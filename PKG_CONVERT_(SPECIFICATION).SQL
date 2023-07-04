@@ -7,7 +7,7 @@ FUNCTION clob2blob (p_clob IN CLOB) RETURN BLOB;
 FUNCTION clob2blob_cs(p_clob		IN CLOB,
 					p_charset_id	IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN BLOB;
 					
-FUNCTION blob2clob_cs(p_blob		IN BLOB
+FUNCTION blob2clob_cs(p_blob		IN BLOB,
 					p_charset_id	IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN CLOB;
 
 END PKG_CONVERT;
