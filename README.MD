@@ -28,6 +28,14 @@ FUNCTION clob2blob_cs(p_clob	IN CLOB,
 		p_charset_id	IN INTEGER DEFAULT DBMS_LOB.DEFAULT_CSID) RETURN BLOB;
 ```
 
+:information_source: Selecting **p_charset_id**
+
+```
+SELECT VALUE, NLS_CHARSET_ID(VALUE)
+	FROM v$nls_valid_values
+	WHERE PARAMETER = 'CHARACTERSET'
+```
+
 <table>
 	<tr>
 		<td valign="center" width="49%"><img src="https://github.com/Ruslan-Shevyrev/Ruslan-Shevyrev/blob/main/logoRS/logo_mini.gif" title="logo"></td>
